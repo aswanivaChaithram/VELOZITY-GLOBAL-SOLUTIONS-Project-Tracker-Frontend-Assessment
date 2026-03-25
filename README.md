@@ -9,10 +9,6 @@ It helps users manage tasks efficiently with Kanban, List, and Timeline views.
 
 https://velozity-global-solutions-project-t.vercel.app/
 
-## GitHub Repository
-
-https://github.com/aswanivaChaithram/VELOZITY-GLOBAL-SOLUTIONS-Project-Tracker-Frontend-Assessment
-
 ---
 
 ## Technologies Used
