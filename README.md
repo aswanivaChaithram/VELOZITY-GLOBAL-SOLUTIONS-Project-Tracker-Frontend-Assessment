@@ -11,6 +11,11 @@ https://velozity-global-solutions-project-t.vercel.app/
 
 ---
 
+## Lighthouse screenshot - Score 92
+
+<img width="1920" height="1080" alt="Screenshot (277)" src="https://github.com/user-attachments/assets/ebfd845b-821a-4ab1-b9a5-b2f4f4bd3737" />
+
+
 ## Technologies Used
 
 - React + TypeScript
@@ -108,7 +113,5 @@ Implemented custom drag-and-drop without libraries.
 Used native events like onDragStart, onDragOver, and onDrop.
 Task status updates dynamically when dropped into a column.
 
-## Lighthouse screenshot - Score 92
-<img width="1920" height="1080" alt="Screenshot (278)" src="https://github.com/user-attachments/assets/c6cd6dba-7a94-4836-8e7e-7315c4e122d2" />
 
 
