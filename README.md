@@ -107,3 +107,8 @@ It avoids prop drilling and is simple for medium-scale applications without need
 Implemented custom drag-and-drop without libraries.
 Used native events like onDragStart, onDragOver, and onDrop.
 Task status updates dynamically when dropped into a column.
+
+## Lighthouse screenshot - Score 92
+<img width="1920" height="1080" alt="Screenshot (278)" src="https://github.com/user-attachments/assets/c6cd6dba-7a94-4836-8e7e-7315c4e122d2" />
+
+
