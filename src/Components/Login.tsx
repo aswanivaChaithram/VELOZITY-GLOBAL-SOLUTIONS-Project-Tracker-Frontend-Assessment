@@ -88,7 +88,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
             className="bg-[#2F3033] p-2 rounded"/>)}
 
         <input type="email" placeholder="Email" required value={email} 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => (e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           className="bg-[#2F3033] p-2 rounded"/>
 
         <input type="password" placeholder="Password" required value={password}
