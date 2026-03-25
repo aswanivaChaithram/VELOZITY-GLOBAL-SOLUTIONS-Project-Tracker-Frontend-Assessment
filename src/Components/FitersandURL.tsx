@@ -21,6 +21,15 @@ const FitersandURL = ({ onFilter }: { onFilter: (tasks: Task[]) => void }) => {
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // NEW: Sync URL → State (for back/forward navigation)
+  useEffect(() => {
+    setStatus(searchParams.get("status")?.split(",") || []);
+    setPriority(searchParams.get("priority")?.split(",") || []);
+    setAssignee(searchParams.get("assignee")?.split(",") || []);
+    setFrom(searchParams.get("from") || "");
+    setTo(searchParams.get("to") || "");
+  }, [searchParams]);
+
   // URL Sync
   useEffect(() => {
     const params: any = {};
@@ -31,7 +40,7 @@ const FitersandURL = ({ onFilter }: { onFilter: (tasks: Task[]) => void }) => {
     if (from) params.from = from;
     if (to) params.to = to;
 
-    setSearchParams(params);
+    setSearchParams(params, { replace: false });
   }, [status, priority, assignee, from, to, setSearchParams]);
 
   // Filter Logic

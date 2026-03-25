@@ -52,14 +52,35 @@ const List = ({ tasks }: Props) => {
   };
 
   return (
-    <div className="h-full overflow-auto bg-[#1E1F22] p-4">
-      <table className="w-full text-left border-collapse">
+    <div className="h-full overflow-y-auto  bg-[#1E1F22] p-2 sm:p-4">
+
+      {sortedTasks.length === 0 ? (
+      // EMPTY STATE
+      <div className="h-full flex flex-col items-center justify-center text-gray-400 gap-4">
+        
+        <div className="text-lg">No tasks found</div>
+        <div className="text-sm text-gray-500">
+          Try adjusting your filters
+        </div>
+
+        {/* simple reset */}
+        <button
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded
+           text-white text-sm cursor-pointer"
+        >
+          Clear Filters
+        </button>
+
+      </div>
+    ) : (
+      <table className="w-full text-left border-collapse text-xs sm:text-sm">
         
         {/* Header */}
         <thead className="bg-[#2A2B2E] text-gray-300">
           <tr>
             <th
-              className="p-3 cursor-pointer"
+              className="p-2 sm:p-3 whitespace-nowrap cursor-pointer"
               onClick={() => handleSort("title")}
             >
               Title {sortKey === "title" && (sortOrder === "asc" ? 
@@ -67,10 +88,10 @@ const List = ({ tasks }: Props) => {
             )}
             </th>
 
-            <th className="p-3">Assignee</th>
+            <th className="p-1 sm:p-3 whitespace-nowrap">Assignee</th>
 
             <th
-              className="p-3 cursor-pointer"
+              className="p-2 sm:p-3 whitespace-nowrap cursor-pointer"
               onClick={() => handleSort("priority")}
             >
               Priority {sortKey === "priority" && (sortOrder === "asc" ? 
@@ -79,7 +100,7 @@ const List = ({ tasks }: Props) => {
             </th>
 
             <th
-              className="p-3 cursor-pointer"
+              className="p-2 sm:p-3 whitespace-nowrap cursor-pointer"
               onClick={() => handleSort("dueDate")}
             >
               Due Date {sortKey === "dueDate" && (sortOrder === "asc" ?
@@ -87,7 +108,7 @@ const List = ({ tasks }: Props) => {
             )}
             </th>
 
-            <th className="p-3">Status</th>
+            <th className="p-2 sm:p-3 whitespace-nowrap">Status</th>
           </tr>
         </thead>
 
@@ -98,21 +119,23 @@ const List = ({ tasks }: Props) => {
               key={task.id}
               className="border-b border-gray-700 hover:bg-[#2A2B2E]"
             >
-              <td className="p-3">{task.title}</td>
+              <td className="p-2 sm:p-3 max-w-[100px] sm:max-w-none truncate">
+                {task.title}
+              </td>
 
               <td className="p-3">
-                <div className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-600 text-xs">
+                <div className="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-gray-600 text-[10px] sm:text-xs">
                   {task.assignee}
                 </div>
               </td>
 
-              <td className="p-3">
+              <td className="p-2">
                 <span
-                  className={`px-2 py-1 rounded text-xs ${
+                  className={`px-1 py-[2px] sm:px-2 sm:py-1 text-[10px] sm:text-xs rounded ${
                     task.priority === "High"
                       ? "bg-red-500"
                       : task.priority === "Medium"
-                      ? "bg-yellow-500"
+                      ? "bg-yellow-600"
                       : "bg-green-500"
                   }`}
                 >
@@ -120,7 +143,7 @@ const List = ({ tasks }: Props) => {
                 </span>
               </td>
 
-              <td className="p-3">
+              <td className="p-2 sm:p-3 text-[10px] sm:text-sm whitespace-nowrap">
                 <span
                   className={`${
                     new Date(task.dueDate) < new Date()
@@ -132,8 +155,7 @@ const List = ({ tasks }: Props) => {
                 </span>
               </td>
 
-              {/* Inline Status Dropdown */}
-              <td className="p-3 text-gray-300">
+              <td className="p-2 sm:p-3 text-[12px] sm:text-sm text-gray-300 whitespace-nowrap">
                 {task.status}
               </td>
             </tr>
@@ -141,6 +163,7 @@ const List = ({ tasks }: Props) => {
         </tbody>
 
       </table>
+    )};
     </div>
   );
 };

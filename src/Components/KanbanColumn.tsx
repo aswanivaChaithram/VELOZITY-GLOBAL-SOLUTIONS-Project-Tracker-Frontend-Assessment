@@ -1,35 +1,36 @@
 import type { Task } from "../Type/taskType";
 import TaskCard from "./TaskCard";
-import DragPlaceholder from "./DragPlaceholder";
 
 type Props = {
   title: string;
   status: Task["status"];
   tasks: Task[];
-  dragState: any;
-  startDrag: any;
-  updateHover: any;
-  dropTask: any;
+  draggedTask: Task | null;
+  hoverStatus: Task["status"] | null;
+  startDrag: (task: Task) => void;
+  onDragOverColumn: (status: Task["status"]) => void;
+  dropTask: (status: Task["status"]) => void;
 };
 
 const KanbanColumn = ({
   title,
   status,
   tasks,
-  dragState,
+  draggedTask,
+  hoverStatus,
   startDrag,
-  updateHover,
+  onDragOverColumn,
   dropTask,
 }: Props) => {
-  const isActive = dragState.hoverStatus === status;
+  const isActive = hoverStatus === status;
 
   return (
     <div
       onDragOver={(e) => {
         e.preventDefault();
-        updateHover(status, tasks.length);
+        onDragOverColumn(status);
       }}
-      onDrop={dropTask}
+      onDrop={() => dropTask(status)}
       className={`flex-1 min-w-[250px] h-full rounded-lg flex flex-col transition
         ${isActive ? "bg-[#333]" : "bg-[#2A2B2E]"}`}
     >
@@ -41,33 +42,21 @@ const KanbanColumn = ({
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {tasks.map((task, index) => {
-          const isDragging = dragState.draggedTask?.id === task.id;
-
-          return (
-            <div
+        {tasks.length === 0 ? (
+          <div className="h-full flex items-center justify-center text-gray-500 text-sm 
+            border border-dashed border-gray-600 rounded-lg p-4 text-center">
+            No tasks here
+          </div>
+        ) : (
+          tasks.map((task) => (
+            <TaskCard
               key={task.id}
-              onDragOver={(e) => {
-                e.preventDefault();
-                updateHover(status, index);
-              }}
-            >
-              {dragState.hoverIndex === index &&
-                dragState.hoverStatus === status && <DragPlaceholder />}
-
-              <TaskCard
-                task={task}
-                index={index}
-                status={status}
-                onDragStart={() => startDrag(task, status, index)}
-                isDragging={isDragging}
-              />
-            </div>
-          );
-        })}
-
-        {dragState.hoverStatus === status &&
-          dragState.hoverIndex === tasks.length && <DragPlaceholder />}
+              task={task}
+              onDragStart={() => startDrag(task)}
+              isDragging={draggedTask?.id === task.id}
+            />
+          ))
+        )}
       </div>
     </div>
   );

@@ -2,8 +2,6 @@ import type { Task } from "../Type/taskType";
 
 type Props = {
   task: Task;
-  index: number;
-  status: Task["status"];
   onDragStart: () => void;
   isDragging: boolean;
 };
@@ -29,7 +27,7 @@ const TaskCard = ({ task, onDragStart, isDragging }: Props) => {
       draggable
       onDragStart={onDragStart}
       className={`bg-[#1E1F21] p-3 rounded-lg cursor-grab transition 
-        ${isDragging ? "opacity-50 shadow-2xl scale-105" : ""}`}
+        ${isDragging ? "opacity-50 shadow-2xl" : ""}`}
     >
       <p className="font-medium mb-2">{task.title}</p>
 

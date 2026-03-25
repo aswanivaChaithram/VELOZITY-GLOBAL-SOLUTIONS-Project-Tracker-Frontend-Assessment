@@ -3,6 +3,7 @@ import Board from "../Components/Board";
 import FitersandURL from "../Components/FitersandURL";
 import type { Task } from "../Type/taskType";
 import List from "../Components/List";
+import Timeline from "../Components/Timeline";
 
 type ViewType = "board" | "list" | "timeline";
 
@@ -87,9 +88,7 @@ const Tasks = () => {
           )}
 
           {activeView === "timeline" && (
-            <div className="p-6 text-gray-400">
-              Timeline View (Coming Soon)
-            </div>
+            <Timeline tasks={filteredTasks} />
           )}
         </div>
 

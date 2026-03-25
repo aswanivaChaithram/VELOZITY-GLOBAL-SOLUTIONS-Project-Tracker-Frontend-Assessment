@@ -24,8 +24,8 @@ const Board = ({ tasks }: BoardProps) => {
   }, [tasks]);
 
   // Drag logic
-  const { dragState, startDrag, updateHover, dropTask } =
-    useDragAndDrop(localTasks, setLocalTasks);
+  const { draggedTask, hoverStatus, startDrag, onDragOverColumn, dropTask } =
+  useDragAndDrop(localTasks, setLocalTasks);
 
   // Group tasks per column
   const getTasksByStatus = (status: Task["status"]) =>
@@ -39,9 +39,10 @@ const Board = ({ tasks }: BoardProps) => {
           title={title}
           status={status}
           tasks={getTasksByStatus(status)}
-          dragState={dragState}
+          draggedTask={draggedTask}
+          hoverStatus={hoverStatus}
           startDrag={startDrag}
-          updateHover={updateHover}
+          onDragOverColumn={onDragOverColumn}
           dropTask={dropTask}
         />
       ))}
