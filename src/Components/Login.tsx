@@ -1,20 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
+type LoginProps = {
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const navigate = useNavigate();
 
-  const handleSignup = () => {
+  // SIGNUP
+  const handleSignup = (): void => {
     const user = { username, email, password };
     localStorage.setItem("user", JSON.stringify(user));
 
-    alert("Account created. Please log in with your new credentials.");
+    alert("Account created. Please log in.");
 
     setUsername("");
     setEmail("");
@@ -23,7 +28,8 @@ const Login = () => {
     setIsLogin(true);
   };
 
-  const handleLogin = () => {
+  // LOGIN
+  const handleLogin = (): void => {
     const storedUser = localStorage.getItem("user");
 
     if (!storedUser) {
@@ -31,19 +37,27 @@ const Login = () => {
       return;
     }
 
-    const parsedUser = JSON.parse(storedUser);
+    const parsedUser: {
+      username: string;
+      email: string;
+      password: string;
+    } = JSON.parse(storedUser);
 
     if (
       parsedUser.email === email &&
       parsedUser.password === password
     ) {
-      navigate("/tasks");
+      localStorage.setItem("isAuthenticated", "true");
+
+      setIsAuthenticated(true);
+
+      navigate("/tasks", { replace: true });
     } else {
       alert("Invalid email or password");
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (isLogin) handleLogin();
     else handleSignup();
@@ -51,10 +65,7 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-[80vh] flex items-center justify-center bg-[#1E1F21] text-[#E4E6EB]">
-      <form
-        onSubmit={handleSubmit}
-        className="w-[400px] flex flex-col gap-5"
-      >
+      <form onSubmit={handleSubmit} className="w-[400px] flex flex-col gap-5">
 
         {isLogin ? (
           <>
@@ -62,7 +73,7 @@ const Login = () => {
               Welcome to Project Tracker
             </h1>
             <p className="text-lg text-center text-gray-400">
-              To get started, Please Sign In
+              Please Sign In
             </p>
           </>
         ) : (
@@ -72,74 +83,67 @@ const Login = () => {
         )}
 
         {!isLogin && (
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-400">Username</label>
-            <input
-              type="text"
-              required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your name"
-              className="bg-[#2F3033] border-2 border-[#3A3B3F] p-2 rounded 
-              focus:border-blue-500 outline-none text-white"
-            />
-          </div>
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            value={username}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setUsername(e.target.value)
+            }
+            className="bg-[#2F3033] p-2 rounded"
+          />
         )}
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm text-gray-400">Email</label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className="bg-[#2F3033] border-2 border-[#3A3B3F] p-2 rounded 
-            focus:border-blue-500 outline-none text-white"
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={email}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
+          className="bg-[#2F3033] p-2 rounded"
+        />
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm text-gray-400">Password</label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            className="bg-[#2F3033] border-2 border-[#3A3B3F] p-2 rounded 
-            focus:border-blue-500 outline-none text-white"
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          value={password}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
+          className="bg-[#2F3033] p-2 rounded"
+        />
 
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition cursor-pointer"
-        >
+        <button className="bg-blue-600 py-2 rounded cursor-pointer">
           Continue
         </button>
 
-        {isLogin ? (
-          <p className="text-sm text-center text-gray-400">
-            Create a new Account?{" "}
-            <span
-              onClick={() => setIsLogin(false)}
-              className="text-blue-500 cursor-pointer"
-            >
-              Sign Up
-            </span>
-          </p>
-        ) : (
-          <p className="text-sm text-center text-gray-400">
-            Already have an account?{" "}
-            <span
-              onClick={() => setIsLogin(true)}
-              className="text-blue-500 cursor-pointer"
-            >
-              Sign In
-            </span>
-          </p>
-        )}
+        <p className="text-center text-gray-400">
+          {isLogin ? (
+            <>
+              Create account?{" "}
+              <span
+                onClick={() => setIsLogin(false)}
+                className="text-blue-500 cursor-pointer"
+              >
+                Sign Up
+              </span>
+            </>
+          ) : (
+            <>
+              Already have account?{" "}
+              <span
+                onClick={() => setIsLogin(true)}
+                className="text-blue-500 cursor-pointer"
+              >
+                Sign In
+              </span>
+            </>
+          )}
+        </p>
       </form>
     </div>
   );
