@@ -40,6 +40,30 @@ https://velozity-global-solutions-project-t.vercel.app/
 
 ---
 
+## State Management Decision
+
+Used React Context API to manage global tasks.
+It avoids prop drilling and is simple for medium-scale applications without needing Redux.
+
+---
+
+## Implementation Overview
+
+- Kanban Board: Tasks grouped by status and rendered dynamically
+- Filters: Multi-select filters synced with URL using useSearchParams
+- List View: Sorting implemented using useMemo for performance
+- Timeline: Tasks positioned based on date calculations
+
+---
+
+## Drag and Drop Approach
+
+Implemented custom drag-and-drop without libraries.
+Used native events like onDragStart, onDragOver, and onDrop.
+Task status updates dynamically when dropped into a column.
+
+---
+
 ## Prerequisites
 
 1. Install Node.js  
@@ -96,23 +120,7 @@ npm run preview
 
 This project is deployed using Vercel.
 
-## State Management Decision
 
-Used React Context API to manage global tasks.
-It avoids prop drilling and is simple for medium-scale applications without needing Redux.
-
-## Implementation Overview
-
-- Kanban Board: Tasks grouped by status and rendered dynamically
-- Filters: Multi-select filters synced with URL using useSearchParams
-- List View: Sorting implemented using useMemo for performance
-- Timeline: Tasks positioned based on date calculations
-
-## Drag and Drop Approach
-
-Implemented custom drag-and-drop without libraries.
-Used native events like onDragStart, onDragOver, and onDrop.
-Task status updates dynamically when dropped into a column.
 
 
 
