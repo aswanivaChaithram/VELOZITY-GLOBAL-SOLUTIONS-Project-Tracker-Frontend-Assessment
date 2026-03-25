@@ -1,73 +1,113 @@
-# React + TypeScript + Vite
+# Project Tracker Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive **Project Management Web App** built using React, TypeScript, Vite, and Tailwind CSS.  
+It helps users manage tasks efficiently with Kanban, List, and Timeline views.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+https://velozity-global-solutions-project-t.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## GitHub Repository
 
-## Expanding the ESLint configuration
+https://github.com/aswanivaChaithram/VELOZITY-GLOBAL-SOLUTIONS-Project-Tracker-Frontend-Assessment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Technologies Used
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- State Management: React Context API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Login & Signup (LocalStorage authentication)
+- Kanban Board with Drag and Drop
+- List View with Sorting
+- Timeline View for task tracking
+- Advanced Filters (Status, Priority, Assignee, Date)
+- URL-based filter persistence
+- Responsive UI
+- Sidebar navigation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Prerequisites
+
+1. Install Node.js  
+Download from: https://nodejs.org
+
+Verify installation:
+```bash
+
+## Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/aswanivaChaithram/VELOZITY-GLOBAL-SOLUTIONS-Project-Tracker-Frontend-Assessment.git
+cd VELOZITY-GLOBAL-SOLUTIONS-Project-Tracker-Frontend-Assessment
+
+### 2. Install dependencies
+ npm install
+
+### 3. Start development server
+npm run dev
+
+Open http://localhost:5173 in your browser
+
+### Build for Production
+npm run build
+
+### Preview Production Build
+npm run preview
+
+---
+
+## Project Structure
+
+- src/Components: Reusable UI components (Board, KanbanColumn, TaskCard, List, Timeline, Filters, Navbar, Login)
+- src/Pages: Main pages (Tasks dashboard)
+- src/context: Context API for global task state
+- src/Data: Mock task generator data
+- src/hooks: Custom hooks (drag and drop logic)
+- src/Type: TypeScript types
+- src/App.tsx: Routing and authentication handling
+- src/main.tsx: Application entry point
+- src/index.css: Global styles
+
+---
+
+## Customization
+
+- Modify tasks → src/Data/generateTasks.ts
+- Update styles → Tailwind classes
+- Add filters → FitersandURL component
+- Extend task structure → taskType.ts
+
+## Deployment
+
+This project is deployed using Vercel.
+
+## State Management Decision
+
+Used React Context API to manage global tasks.
+It avoids prop drilling and is simple for medium-scale applications without needing Redux.
+
+## Implementation Overview
+
+- Kanban Board: Tasks grouped by status and rendered dynamically
+- Filters: Multi-select filters synced with URL using useSearchParams
+- List View: Sorting implemented using useMemo for performance
+- Timeline: Tasks positioned based on date calculations
+
+## Drag and Drop Approach
+
+Implemented custom drag-and-drop without libraries.
+Used native events like onDragStart, onDragOver, and onDrop.
+Task status updates dynamically when dropped into a column.
