@@ -15,19 +15,16 @@ const statusMap = {
 } as const;
 
 const Board = ({ tasks }: BoardProps) => {
-  // Local state (important for drag updates)
+
   const [localTasks, setLocalTasks] = useState<Task[]>(tasks);
 
-  // Sync when filters change
   useEffect(() => {
     setLocalTasks(tasks);
   }, [tasks]);
 
-  // Drag logic
   const { draggedTask, hoverStatus, startDrag, onDragOverColumn, dropTask } =
   useDragAndDrop(localTasks, setLocalTasks);
 
-  // Group tasks per column
   const getTasksByStatus = (status: Task["status"]) =>
     localTasks.filter((task) => task.status === status);
 

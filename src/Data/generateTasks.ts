@@ -34,8 +34,7 @@ export const generateTasks = (count: number = 500): Task[] => {
   for (let i = 1; i <= count; i++) {
     const hasStartDate = Math.random() > 0.2;
 
-    tasks.push({
-      id: i,
+    tasks.push({ id: i,
       title: titles[Math.floor(Math.random() * titles.length)],
       status: statuses[Math.floor(Math.random() * statuses.length)],
       priority: priorities[Math.floor(Math.random() * priorities.length)],

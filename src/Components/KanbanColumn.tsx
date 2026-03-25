@@ -25,15 +25,11 @@ const KanbanColumn = ({
   const isActive = hoverStatus === status;
 
   return (
-    <div
-      onDragOver={(e) => {
-        e.preventDefault();
-        onDragOverColumn(status);
-      }}
-      onDrop={() => dropTask(status)}
+    <div onDragOver={(e) => { e.preventDefault();
+        onDragOverColumn(status); }} onDrop={() => dropTask(status)}
       className={`flex-1 min-w-[250px] h-full rounded-lg flex flex-col transition
-        ${isActive ? "bg-[#333]" : "bg-[#2A2B2E]"}`}
-    >
+        ${isActive ? "bg-[#333]" : "bg-[#2A2B2E]"}`} >
+
       {/* Header */}
       <div className="p-3 border-b border-gray-600 flex justify-between">
         <span>{title}</span>
@@ -49,12 +45,8 @@ const KanbanColumn = ({
           </div>
         ) : (
           tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              onDragStart={() => startDrag(task)}
-              isDragging={draggedTask?.id === task.id}
-            />
+            <TaskCard key={task.id} task={task} onDragStart={() => startDrag(task)}
+              isDragging={draggedTask?.id === task.id} />
           ))
         )}
       </div>

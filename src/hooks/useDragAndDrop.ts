@@ -3,8 +3,7 @@ import type { Task } from "../Type/taskType";
 
 export const useDragAndDrop = (
   tasks: Task[],
-  setTasks: (tasks: Task[]) => void
-) => {
+  setTasks: (tasks: Task[]) => void ) => {
   const [draggedTask, setDraggedTask] = useState<Task | null>(null);
   const [hoverStatus, setHoverStatus] = useState<Task["status"] | null>(null);
 
@@ -20,10 +19,7 @@ export const useDragAndDrop = (
     if (!draggedTask) return;
 
     const updatedTasks = tasks.map((t) =>
-      t.id === draggedTask.id
-        ? { ...t, status } // ✅ ONLY update status
-        : t
-    );
+      t.id === draggedTask.id ? { ...t, status } : t );
 
     setTasks(updatedTasks);
     resetDrag();

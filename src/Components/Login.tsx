@@ -83,39 +83,17 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
         )}
 
         {!isLogin && (
-          <input
-            type="text"
-            placeholder="Username"
-            required
-            value={username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
-            className="bg-[#2F3033] p-2 rounded"
-          />
-        )}
+          <input type="text" placeholder="Username" required value={username}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+            className="bg-[#2F3033] p-2 rounded"/>)}
 
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
-          }
-          className="bg-[#2F3033] p-2 rounded"
-        />
+        <input type="email" placeholder="Email" required value={email} 
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => (e.target.value)}
+          className="bg-[#2F3033] p-2 rounded"/>
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
-          className="bg-[#2F3033] p-2 rounded"
-        />
+        <input type="password" placeholder="Password" required value={password}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          className="bg-[#2F3033] p-2 rounded"/>
 
         <button className="bg-blue-600 py-2 rounded cursor-pointer">
           Continue
@@ -125,20 +103,14 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
           {isLogin ? (
             <>
               Create account?{" "}
-              <span
-                onClick={() => setIsLogin(false)}
-                className="text-blue-500 cursor-pointer"
-              >
+              <span onClick={() => setIsLogin(false)} className="text-blue-500 cursor-pointer">
                 Sign Up
               </span>
             </>
           ) : (
             <>
               Already have account?{" "}
-              <span
-                onClick={() => setIsLogin(true)}
-                className="text-blue-500 cursor-pointer"
-              >
+              <span onClick={() => setIsLogin(true)} className="text-blue-500 cursor-pointer">
                 Sign In
               </span>
             </>

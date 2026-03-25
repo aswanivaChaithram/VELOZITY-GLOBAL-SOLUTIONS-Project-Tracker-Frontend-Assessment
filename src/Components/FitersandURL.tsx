@@ -21,7 +21,6 @@ const FitersandURL = ({ onFilter }: { onFilter: (tasks: Task[]) => void }) => {
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  // NEW: Sync URL → State (for back/forward navigation)
   useEffect(() => {
     setStatus(searchParams.get("status")?.split(",") || []);
     setPriority(searchParams.get("priority")?.split(",") || []);

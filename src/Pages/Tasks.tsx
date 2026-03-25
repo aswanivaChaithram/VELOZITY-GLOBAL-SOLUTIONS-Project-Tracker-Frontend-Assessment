@@ -16,15 +16,12 @@ const Tasks = () => {
     <div className="flex h-[calc(100vh-130px)]">
 
       {/******** SIDEBAR ********/}
-      <div
-        className={`${ isSidebarOpen ? "w-[240px]" : "w-[57px]" } 
+      <div className={`${ isSidebarOpen ? "w-[240px]" : "w-[57px]" } 
         bg-[#151618] p-4 flex flex-col transition-all duration-300`}>
 
-        <div
-          className="mb-6 text-xl text-gray-300 cursor-pointer"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-          <i className="fa-solid fa-bars"></i>
+        <div className="mb-6 text-xl text-gray-300 cursor-pointer"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+              <i className="fa-solid fa-bars"></i>
         </div>
 
         <div>
@@ -42,24 +39,21 @@ const Tasks = () => {
           <div className="flex flex-col gap-2 ml-2">
             {isSidebarOpen && (
               <>
-                <button
-                  onClick={() => setActiveView("board")}
+                <button onClick={() => setActiveView("board")}
                   className={`px-3 py-2 rounded-md font-semibold cursor-pointer 
                     ${ activeView === "board" ? 
                         "bg-[#2A2B2E] text-white" : "text-gray-400" }`}>
                   Board
                 </button>
 
-                <button
-                  onClick={() => setActiveView("list")}
+                <button onClick={() => setActiveView("list")}
                   className={`px-3 py-2 rounded-md font-semibold cursor-pointer
                     ${ activeView === "list" ? 
                         "bg-[#2A2B2E] text-white" : "text-gray-400" }`}>
                   List
                 </button>
 
-                <button
-                  onClick={() => setActiveView("timeline")}
+                <button onClick={() => setActiveView("timeline")}
                   className={`px-3 py-2 rounded-md font-semibold cursor-pointer
                     ${ activeView === "timeline" ? 
                         "bg-[#2A2B2E] text-white" : "text-gray-400" }`}>
@@ -79,17 +73,13 @@ const Tasks = () => {
 
         {/* Views */}
         <div className="flex-1 overflow-hidden">
-          {activeView === "board" && (
-            <Board tasks={filteredTasks} />
-          )}
 
-          {activeView === "list" && (
-            <List tasks={filteredTasks} />
-          )}
+          {activeView === "board" && (<Board tasks={filteredTasks} />)}
 
-          {activeView === "timeline" && (
-            <Timeline tasks={filteredTasks} />
-          )}
+          {activeView === "list" && (<List tasks={filteredTasks} />)}
+
+          {activeView === "timeline" && (<Timeline tasks={filteredTasks} />)}
+          
         </div>
 
       </div>

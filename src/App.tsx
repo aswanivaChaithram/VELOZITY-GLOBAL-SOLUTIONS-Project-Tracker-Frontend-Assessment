@@ -26,7 +26,9 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={ isAuthenticated ? 
-            <Navigate to="/tasks" replace /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Navigate to="/tasks" replace /> 
+            : 
+            <Login setIsAuthenticated={setIsAuthenticated} />} />
 
           <Route path="/tasks" element={ isAuthenticated ? 
             <Tasks /> : <Navigate to="/" replace />} />

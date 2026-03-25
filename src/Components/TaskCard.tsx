@@ -23,26 +23,19 @@ const priorityStyles: Record<"Low" | "Medium" | "High", string> = {
 
 const TaskCard = ({ task, onDragStart, isDragging }: Props) => {
   return (
-    <div
-      draggable
-      onDragStart={onDragStart}
+    <div draggable onDragStart={onDragStart}
       className={`bg-[#1E1F21] p-3 rounded-lg cursor-grab transition 
-        ${isDragging ? "opacity-50 shadow-2xl" : ""}`}
-    >
+        ${isDragging ? "opacity-50 shadow-2xl" : ""}`}>
+
       <p className="font-medium mb-2">{task.title}</p>
 
       <div className="flex items-center justify-between mb-2">
-        <div
-          className={`w-6 h-6 flex items-center justify-center rounded-full text-xs 
-          ${assigneeColors[task.assignee]}`}
-        >
-          {task.assignee}
+        <div className={`w-6 h-6 flex items-center justify-center rounded-full text-xs 
+          ${assigneeColors[task.assignee]}`}>
+            {task.assignee}
         </div>
 
-        <span
-          className={`text-xs px-2 py-1 rounded 
-          ${priorityStyles[task.priority]}`}
-        >
+        <span className={`text-xs px-2 py-1 rounded ${priorityStyles[task.priority]}`}>
           {task.priority}
         </span>
       </div>
