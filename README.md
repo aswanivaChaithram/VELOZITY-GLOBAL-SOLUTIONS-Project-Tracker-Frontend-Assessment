@@ -13,8 +13,9 @@ https://velozity-global-solutions-project-t.vercel.app/
 
 ## Lighthouse screenshot - Score 92
 
-<img width="1920" height="1080" alt="Screenshot (277)" src="https://github.com/user-attachments/assets/ebfd845b-821a-4ab1-b9a5-b2f4f4bd3737" />
+<img width="1920" height="1080" alt="Screenshot (278)" src="https://github.com/user-attachments/assets/78f7e3fe-4423-4679-99a2-9e8adba8904a" />
 
+---
 
 ## Technologies Used
 
